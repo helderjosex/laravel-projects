@@ -9,50 +9,57 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller{
 
+    protected $book = null;
 
-    public function index(){
-
-        $books  = Book::all();
-
-        return $books;
-
+    public function __construct(Book $book)
+    {
+        $this->book = $book;
     }
 
-    public function get($id){
-
-        $book = Book::findorfail($id);
-
-        return $book;
+    public function index()
+    {
+        $books = $this->book->all();
+        return response($books,200);
     }
 
-    public function save(Request $request){
-
-        $book = Book::create($request->all());
-
-        return $book;
-
+    public function show($id)
+    {
+        $book = $this->book->getBook($id);
+        if(!$book)
+        {
+            $output = ['response' => 'Livro não encontrado!'];
+            return response($output,400);
+        }
+        return response($book,200);
     }
 
-    public function update(Request $request,$id){
-
-        $book = Book::findorfail($id);
-
-        $book->title = $request->input('title');
-        $book->author = $request->input('author');
-        $book->isbn = $request->input('isbn');
-
-        $book->save();
-
-        return $book;
+    public function save()
+    {
+        $book = $this->book->saveBook();
+        return response($book,200);
     }
 
-    public function delete($id){
+    public function update($id)
+    {
+        $book = $this->book->updateBook($id);
+        if(!$book)
+        {
+            $output = ['response' => 'Livro não encontrado!'];
+            return response($output,400);
+        }
+        return response($book,200);
+    }
 
-        $book = Book::findorfail($id);
-
-        $book->delete();
-
-        return response()->json('deleted');
+    public function delete($id)
+    {
+        $book = $this->book->deleteBook($id);
+        if(!$book)
+        {
+            $output = ['response' => 'Livro não encontrado!'];
+            return response($output,400);
+        }
+        $output = ['response' => 'Livro removido com sucesso!'];
+        return response($output,200);
     }
 
 

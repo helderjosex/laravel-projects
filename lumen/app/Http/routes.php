@@ -12,27 +12,49 @@
 */
 
 $app->get('/', function () use ($app) {
-    return $app->version();
+    $output= array("version"=>$app->version());
+    return response()->json($output);
+});
+
+// USER
+$app->group(['prefix' => 'user','namespace' => 'App\Http\Controllers'], function () use ($app) {
+
+    $app->get('','UserController@index');
+
+    $app->get('{id}','UserController@show');
+
+    $app->post('','UserController@save');
+
+    $app->put('{id}','UserController@update');
+
+    $app->delete('{id}','UserController@delete');
 });
 
 // ARTICLE
-$app->get('/article','ArticleController@index');
+$app->group(['prefix' => 'article','namespace' => 'App\Http\Controllers'], function () use ($app) {
 
-$app->get('article/{id}','ArticleController@get');
+    $app->get('','ArticleController@index');
 
-$app->post('article','ArticleController@save');
+    $app->get('{id}','ArticleController@show');
 
-$app->put('article/{id}','ArticleController@update');
+    $app->post('','ArticleController@save');
 
-$app->delete('article/{id}','ArticleController@delete');
+    $app->put('{id}','ArticleController@update');
+
+    $app->delete('{id}','ArticleController@delete');
+});
 
 // BOOK
-$app->get('/book','BookController@index');
+$app->group(['prefix' => 'book','namespace' => 'App\Http\Controllers'], function () use ($app) {
 
-$app->get('book/{id}','BookController@get');
+    $app->get('','BookController@index');
 
-$app->post('book','BookController@save');
+    $app->get('{id}','BookController@show');
 
-$app->put('book/{id}','BookController@update');
+    $app->post('','BookController@save');
 
-$app->delete('book/{id}','BookController@delete');
+    $app->put('{id}','BookController@update');
+
+    $app->delete('{id}','BookController@delete');
+});
+
