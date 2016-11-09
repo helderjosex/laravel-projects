@@ -13,8 +13,24 @@ require('./bootstrap');
  * the application, or feel free to tweak this setup for your needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+//Vue.component('example', require('./components/Example.vue'));
+const ExampleComponent = require('./components/Example.vue');
+const LoginComponent = require('./components/Login.vue');
+
+const routes = [
+    { path: '/minha-primeira-rota', component: ExampleComponent },
+    { path: '/login', component: LoginComponent }
+];
+
+const router = new VueRouter({
+    routes// short for routes: routes
+});
 
 const app = new Vue({
-    el: '#app'
-});
+    router
+}).$mount('#app');
+
+// const app = new Vue({
+//     el: '#app'
+// });
+

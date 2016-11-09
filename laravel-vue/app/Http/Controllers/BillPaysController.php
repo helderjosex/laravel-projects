@@ -26,7 +26,7 @@ class BillPaysController extends Controller
     public function store(Request $request)
     {
         $billPay = BillPay::create($request->all());
-        return response()->json($billPay,201);
+        return response()->json($billPay,200);
     }
 
     /**
@@ -64,6 +64,6 @@ class BillPaysController extends Controller
     public function destroy(BillPay $bill_pay)
     {
         $bill_pay->delete();
-        return response()->json([],204);
+        return response()->json([],200);
     }
 }

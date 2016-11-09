@@ -1,6 +1,6 @@
 # Api de Contas a pagar
 
-- Laravel 5.3 + Vue Js + SqlLite
+- Laravel 5.3 + Vue Js + Materialize CSS
  
 
 **Instruções de instalação localmente:**
