@@ -55,7 +55,8 @@
                 this.$http.post('http://localhost:8000/api/token', this.user).then(
                             (response) => {
                                 window.localStorage.setItem('token',response.data.token);
-                                console.log('login funcionando');
+                                //console.log('login funcionando');
+                                this.$router.go({name: 'bill-pay-list'});
                             }
                  )
             }

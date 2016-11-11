@@ -16,10 +16,30 @@ require('./bootstrap');
 //Vue.component('example', require('./components/Example.vue'));
 const ExampleComponent = require('./components/Example.vue');
 const LoginComponent = require('./components/Login.vue');
+const AppComponent = require('./components/App.vue');
+const BillPayListComponent = require('./components/BillPayList.vue');
 
 const routes = [
-    { path: '/minha-primeira-rota', component: ExampleComponent },
-    { path: '/login', component: LoginComponent }
+    {
+        path: '/minha-primeira-rota',
+        name:'helloworld',
+        component: ExampleComponent
+    },
+    {
+        path: '/login',
+        name:'auth.login',
+        component: LoginComponent
+    },
+    {
+        path: '/app',
+        subRoutes: {
+            '/bill-pays': {
+                name: 'bill-pay-list',
+                component: BillPayListComponent
+            }
+        },
+        component: AppComponent
+    }
 ];
 
 const router = new VueRouter({

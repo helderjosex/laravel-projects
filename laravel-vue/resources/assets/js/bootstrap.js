@@ -34,7 +34,10 @@ Vue.use(VueRouter);
 
 Vue.http.interceptors.push((request, next) => {
     //request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
-
+    let token = window.localStorage.getItem('token');
+    if(token){
+        request.headers['Authorization'] = `Bearer ${token}`;
+    }
     next();
 });
 
