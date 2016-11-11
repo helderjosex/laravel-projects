@@ -6,14 +6,14 @@
                 <form class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="email" type="email">
+                            <input id="email" type="email" v-model='user.email'>
                             <label for="email">Email</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="pass" type="password">
-                            <label for="pass">Password</label>
+                            <input id="password" type="password" v-model='user.password'>
+                            <label for="password">Password</label>
                         </div>
                     </div>
                     <div class="row">
@@ -52,7 +52,12 @@
         },
         methods: {
             login(){
-                console.log('login funcionando');
+                this.$http.post('http://localhost:8000/api/token', this.user).then(
+                            (response) => {
+                                window.localStorage.setItem('token',response.data.token);
+                                console.log('login funcionando');
+                            }
+                 )
             }
         }
     }
