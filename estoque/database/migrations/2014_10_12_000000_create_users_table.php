@@ -25,11 +25,6 @@ class CreateUsersTable extends Migration
             $table->softDeletes();
         });
 
-        factory(User::class)->create([
-                    'username'=>'admin',
-                    'email'=>'admin@email.com',
-                    'password' => bcrypt('123456')
-        ]);
     }
 
     /**

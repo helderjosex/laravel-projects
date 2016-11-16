@@ -8,5 +8,5 @@
 
 3. Rodar `composer install`
 
-4. Rodar `php -S localhost:8000 -t public/`
+4. Rodar `php artisan serve`
 
