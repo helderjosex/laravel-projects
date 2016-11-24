@@ -17,7 +17,25 @@ class AuthControllerTest extends TestCase
         // Sets
         $data=[
             'username' => 'admin',
-            'email' => 'admin@email.com',
+            'password' => '123456',
+        ];
+
+        //factory(User::class)->create($data);
+
+        $this->post('auth/login', $data);
+
+        // Asserts
+        $this->seeStatusCode(200);
+        $this->seeJson([
+            'username' => 'admin',
+        ]);
+    }
+
+    public function testLoginWithEmail()
+    {
+        // Sets
+        $data=[
+            'username' => 'admin@email.com',
             'password' => '123456',
         ];
 
