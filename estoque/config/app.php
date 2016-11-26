@@ -180,6 +180,8 @@ return [
 
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 
+        ResultSystems\Validation\ValidationServiceProvider::class,
+
     ],
 
     /*

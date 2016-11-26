@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AuthRequest extends FormRequest
+class ClientRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,9 @@ class AuthRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|max:45',
+            'cpf' => 'cpf',
+            'birthdate' => 'date|date_format:Y-m-d',
         ];
     }
 
@@ -32,4 +34,12 @@ class AuthRequest extends FormRequest
     {
         return response()->json($errors, 422);
     }
+
+    public function messages()
+    {
+        return [
+            'cpf.cpf' => 'CPF inválido',
+        ];
+    }
+
 }
