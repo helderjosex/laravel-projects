@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Client;
 use App\Http\Requests\ClientRequest;
+use App\Http\Requests\ClientUpdateRequest;
 
 class ClientController extends Controller
 {
@@ -72,9 +73,13 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ClientUpdateRequest $request, $id)
     {
-        //
+        $client = Client::find($id);
+        $client->fill($request->all());
+        $client->save();
+
+        return $client;
     }
 
     /**

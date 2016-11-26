@@ -25,7 +25,7 @@ class ClientRequest extends FormRequest
     {
         return [
             'name' => 'required|max:45',
-            'cpf' => 'cpf',
+            'cpf' => 'cpf|unique:clients',
             'birthdate' => 'date|date_format:Y-m-d',
         ];
     }
