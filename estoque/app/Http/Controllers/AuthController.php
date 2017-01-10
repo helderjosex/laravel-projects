@@ -43,4 +43,14 @@ class AuthController extends Controller
         $user = Auth::user();
         return compact('token','user');
     }
+
+    public function logout()
+    {
+        $result = JWTAuth::invalidate(JWTAuth::getToken());
+        if(!$result){
+            return response()->json(['error' => 'logout failed'], 401);
+        }
+
+        return response()->json(['success' => 'logout successfully'], 200);
+    }
 }
