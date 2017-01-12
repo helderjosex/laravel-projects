@@ -49,4 +49,17 @@ class AuthControllerTest extends TestCase
             'username' => 'admin',
         ]);
     }
+
+    public function testLogout()
+    {
+        // Sets
+        $headers = $this->getHeaders();
+
+        //dd($this->response->getContent());
+        $this->post('auth/logout', [], $headers);
+
+        // Asserts
+        $this->seeStatusCode(200);
+
+    }
 }
